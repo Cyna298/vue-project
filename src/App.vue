@@ -1,16 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+  <InputText/>
+  <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import Toast from './components/Toast.vue'
+// import Toggle from './components/Toggle.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  // components: {
+  //   Toast,
+  //   Toggle
+  // }
+  data() {
+	return {
+		selectedCity: null,
+		cities: [
+			{name: 'New York', code: 'NY'},
+			{name: 'Rome', code: 'RM'},
+			{name: 'London', code: 'LDN'},
+			{name: 'Istanbul', code: 'IST'},
+			{name: 'Paris', code: 'PRS'}
+		]
+	}
+}
 }
 </script>
 
