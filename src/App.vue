@@ -1,19 +1,18 @@
 <template>
-
+  <Toast/>
   <InputText/>
   <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" />
 </template>
 
 <script>
-// import Toast from './components/Toast.vue'
-// import Toggle from './components/Toggle.vue'
+ import Toast from './components/Toast.vue'
+ 
 
 export default {
   name: 'App',
-  // components: {
-  //   Toast,
-  //   Toggle
-  // }
+   components: {
+     Toast
+   },
   data() {
 	return {
 		selectedCity: null,
