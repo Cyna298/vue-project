@@ -16,6 +16,7 @@
     "primevue": "^3.5.0",
     "vue": "^3.0.0",
     "vue-facebook-login-component-next": "^1.0.4",
+    "vue-gtag": "^2.0.1",
     "yoyoo-ddr": "^0.2.5"
   },
   "devDependencies": {

@@ -3,16 +3,19 @@
   <InputText/>
   <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" />
   <SocialLogin/>
+  <GAnalytics/>
 </template>
 
 <script>
 import SocialLogin from './components/SocialLogin.vue'
 // import Toggle from './components/Toggle.vue'
+import GAnalytics from './components/GAnalytics.vue'
 
 export default {
   name: 'App',
    components: {
-      SocialLogin
+      SocialLogin,
+      GAnalytics
    },
   data() {
 	return {
