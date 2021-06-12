@@ -1,5 +1,5 @@
 <template>
-
+  <Toast/>
   <InputText/>
   <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" />
   <SocialLogin/>
@@ -7,15 +7,18 @@
 </template>
 
 <script>
+
 import SocialLogin from './components/SocialLogin.vue'
 // import Toggle from './components/Toggle.vue'
 import GAnalytics from './components/GAnalytics.vue'
+
 
 export default {
   name: 'App',
    components: {
       SocialLogin,
       GAnalytics
+
    },
   data() {
 	return {
