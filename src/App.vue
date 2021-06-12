@@ -2,16 +2,20 @@
   <Toast/>
   <InputText/>
   <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" />
+  <SocialLogin/>
 </template>
 
 <script>
- import Toast from './components/Toast.vue'
- 
+
+import SocialLogin from './components/SocialLogin.vue'
+// import Toggle from './components/Toggle.vue'
+
 
 export default {
   name: 'App',
    components: {
-     Toast
+      SocialLogin
+
    },
   data() {
 	return {
