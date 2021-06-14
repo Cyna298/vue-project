@@ -1,25 +1,27 @@
 <template>
+  
+  <div class="i-map">
   <GoogleMap
-  ref="mapRef"
   api-key="AIzaSyCI8LGJTKuz_SOtASq4Wjk_KjJHWZvrl9Y"
-  class="map"
-  :center="center"
-  :zoom="2"
-  />
-  <label for="lng">Longitude</label>
-  <input v-model.number="lng" id="lng" type="number" min="-180" max="180" step="10" />
+  style="width: 70%; height: 500px ; margin-top:40px"
+  
+  :center='center'
+  :zoom='zoom'
+  >
+    <Marker :options="{ position: center }" />
+  </GoogleMap>
 
-  <button>click me</button>
-
+    
+  <button @click="geolocate" class="maps-button"> Click me to get your current location</button>
+    </div>
 </template>
 
-
 <script>
-import { defineComponent, ref, computed, watch } from 'vue'
-import { GoogleMap } from 'vue3-google-map'
+import { defineComponent } from 'vue'
+import { GoogleMap, Marker } from 'vue3-google-map'
 
 export default defineComponent({
-  components: { GoogleMap },
+  components: { GoogleMap, Marker },
 
   methods:{
      getPosition()
@@ -80,7 +82,6 @@ export default defineComponent({
         this.center1.lng=y
 
 
-
         let z= {lat:x, lng:y}
 
         console.log(this.center1)
@@ -90,66 +91,79 @@ export default defineComponent({
         return z;
         
 
+    },
+
+
+
+    geolocate(){
+
+        navigator.geolocation.getCurrentPosition(position => {
+                this.center = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
+
+                this.zoom= 17
+      });
+
     }
 
 },
 
-  setup() {
-    const mapRef = ref(null)
-    const center = { lat: 0, lng: 0 }
 
-    const _lng = ref(0)
-    const lng = computed({
-      get: () => _lng.value,
-      set: v => {
-        if (!Number.isFinite(v)) {
-          _lng.value = 0
-        } else if (v > 180) {
-          _lng.value = 180
-        } else if (v < -180) {
-          _lng.value = -180
-        } else {
-          _lng.value = v
+    data()
+    {
+        return{
+           center: {
+            lat : 30.3753,
+            lng : 69.3451 } ,
+
+            zoom: 7
         }
-      },
-    })
+    },
 
-    watch(lng, () => {
-      if (mapRef.value?.ready) {
-        mapRef.value.map.panTo({ lat: 0, lng: lng.value })
-      }
-    })
 
-    return { mapRef, center, lng }
-  },
-    
-
+  
 
  
 })
 </script>
 
 
+
 <style scoped>
-.map {
-  position: relative;
-  width: 100%;
-  height: 500px;
+.i-map
+{
+display: flex;
+flex-direction: column;
+align-items: center;
+
+
 }
 
-.map::after {
-  position: absolute;
-  content: '';
-  width: 1px;
-  height: 100%;
-  top: 0;
-  left: 50%;
-  background: red;
+
+.maps-button
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 40px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #F2F8FF;
+    color: black    ;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 2px solid #C2DBFF;
+    font-weight: 550;
+
 }
 
-input[type='number'] {
-  width: 200px;
-  margin-top: 20px;
-  margin-left: 10px;
+.maps-button:hover
+{
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
 }
 </style>
