@@ -3,18 +3,32 @@
   <InputText/>
   <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" />
   <SocialLogin/>
+  <SFacebook/>
+
+  <MyLocation/>
+  
+
 </template>
 
 <script>
 
 import SocialLogin from './components/SocialLogin.vue'
+import SFacebook from './components/SharePost.vue'
+//import STwitter from './components/SharePost.vue'
+import MyLocation from './components/MyLocation.vue'
+
+
 // import Toggle from './components/Toggle.vue'
 
 
 export default {
   name: 'App',
    components: {
-      SocialLogin
+      SocialLogin,
+      SFacebook,
+      MyLocation
+      
+      
 
    },
   data() {

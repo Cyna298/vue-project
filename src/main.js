@@ -1,6 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
+import {SFacebook,STwitter} from 'vue-socials'
+
+
 import 'primevue/resources/themes/saga-blue/theme.css'      //theme
 import 'primevue/resources/primevue.min.css'                 //core css
 import 'primeicons/primeicons.css'                           //icons
@@ -16,13 +19,18 @@ const gauthOption = {
 }
 
 
+
 const app = createApp(App);
 
 app.use(GoogleAuth, gauthOption)
 app.config.productionTip = false
+
 
 app.use(PrimeVue)
 app.component('Dropdown',Dropdown)
 app.component('InputText',InputText)
 app.mount('#app');
 //createApp(App).mount('#app')
+
+app.component('SFacebook',SFacebook)
+app.component('STwitter',STwitter)
