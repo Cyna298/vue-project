@@ -1,12 +1,14 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
 
-import 'primevue/resources/themes/saga-blue/theme.css'      //theme
-import 'primevue/resources/primevue.min.css'                 //core css
-import 'primeicons/primeicons.css'                           //icons
-import PrimeVue from 'primevue/config'
-import Dropdown from 'primevue/dropdown';
-import InputText from 'primevue/inputtext';
+import "primevue/resources/themes/saga-blue/theme.css"; //theme
+import "primevue/resources/primevue.min.css"; //core css
+import "primeicons/primeicons.css"; //icons
+import PrimeVue from "primevue/config";
+import Dropdown from "primevue/dropdown";
+import InputText from "primevue/inputtext";
+import Editor from "primevue/editor";
+
 
 
 import GoogleAuth from './config/google_oAuth'
@@ -18,14 +20,20 @@ const gauthOption = {
 import VueGtag from "vue-gtag";
 
 
+
 const app = createApp(App);
 
-app.use(GoogleAuth, gauthOption)
-app.config.productionTip = false
+app.use(GoogleAuth, gauthOption);
+app.config.productionTip = false;
+
 
 app.use(VueGtag, {config: { id: "UA-185336209-1" }})
-app.use(PrimeVue)
-app.component('Dropdown',Dropdown)
-app.component('InputText',InputText)
-app.mount('#app');
+
+
+app.use(PrimeVue);
+app.component("Editor", Editor);
+app.component("Dropdown", Dropdown);
+app.component("InputText", InputText);
+app.mount("#app");
+
 //createApp(App).mount('#app')
