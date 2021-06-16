@@ -7,7 +7,12 @@ import "primeicons/primeicons.css"; //icons
 import PrimeVue from "primevue/config";
 import Dropdown from "primevue/dropdown";
 import InputText from "primevue/inputtext";
+import Button from "primevue/button";
 import Editor from "primevue/editor";
+import { plugin as Slicksort } from 'vue-slicksort';
+import Ripple from 'primevue/ripple';
+
+
 
 
 
@@ -30,10 +35,13 @@ app.config.productionTip = false;
 app.use(VueGtag, {config: { id: "UA-185336209-1" }})
 
 
-app.use(PrimeVue);
+app.use(PrimeVue, {ripple: true});
+app.directive('ripple', Ripple);
+app.use(Slicksort);
 app.component("Editor", Editor);
 app.component("Dropdown", Dropdown);
 app.component("InputText", InputText);
+app.component("Button", Button);
 app.mount("#app");
 
 //createApp(App).mount('#app')
