@@ -113,7 +113,9 @@
 
 
   <h4 v-if="todos.length === 0">Empty list.</h4>
+ 
 </Fieldset>
+
 </template>
 
 <script>
@@ -124,6 +126,7 @@ import SocialLogin from './components/SocialLogin.vue'
 import ProgressBar from 'primevue/progressbar';
 import Dialog from 'primevue/dialog';
 import Fieldset from 'primevue/fieldset';
+
 
 export default {
   name: "App",
@@ -142,7 +145,8 @@ export default {
     const count = ref(0)
     const message = ref('Big things have small beginnings')
     const user = ref("Login")
-
+    
+    
 
 
 
@@ -156,6 +160,14 @@ export default {
       }
       
       storeItem();
+    }
+    function  GA() {
+      
+      this.$gtag.event('login-test', {
+        'event_category': 'documentation',
+        'event_label': 'Just a placeholder for testing',
+        'value': 1
+      })
     }
     function populateHeader(e)
     {
@@ -172,6 +184,7 @@ export default {
 
       }
       closeModal()
+      GA()
     }
     function crossOut(todo) {
       todo.done = !todo.done;
@@ -247,6 +260,7 @@ export default {
       function ivName() {
             displayName.value = false;
         }
+
 
     return {
       todos,

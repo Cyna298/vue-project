@@ -9,16 +9,27 @@
 </template>
 
 <script>
+
 export default {
     name:'BigButton',
     props:{
-        title:String
+        title:String,
+
+       
     },
     methods:
     {
         onClick()
         {
-            console.log(localStorage.getItem('todos'))
+
+    
+        this.$gtag.event('Task-Added', {
+            'event_category': 'documentation',
+            'event_label': 'Just a placeholder for testing',
+            'value': 1
+        })
+    
+           
 
         }
     }
