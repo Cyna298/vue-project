@@ -1,6 +1,23 @@
 <template>
 
-  <h1>What's Next?</h1>
+        
+<Dialog header="Sign Up or Login" v-model:visible="displayModal" :style="{width: '50vw'}" :modal="true">
+
+<SocialLogin @auth="populateHeader" />
+        </Dialog>
+
+<Fieldset  style=" border-radius: 0.5rem" @mouseenter="vName()" @mouseleave="ivName()">
+  <template #legend>
+
+    <div class="field-card" @click="openModal" >
+       <transition name="slide-fade">
+      <p class="log" v-if="displayName==true">{{user}}</p>
+       </transition>
+    </div>
+
+  </template>
+  <h1  >What's Next?</h1>
+  
   
   <form @submit.prevent="newItem()">
     <div @mouseenter="showTool()" @mouseleave="hideTool()">
@@ -96,32 +113,35 @@
 
 
   <h4 v-if="todos.length === 0">Empty list.</h4>
+</Fieldset>
 </template>
 
 <script>
 import { ref } from "vue";
 import { SlickList, SlickItem,HandleDirective } from 'vue-slicksort';
 import BigButton from './components/BigButton.vue'
+import SocialLogin from './components/SocialLogin.vue'
 import ProgressBar from 'primevue/progressbar';
-
-
+import Dialog from 'primevue/dialog';
+import Fieldset from 'primevue/fieldset';
 
 export default {
   name: "App",
-  components:{SlickList,SlickItem, BigButton,ProgressBar},
+  components:{SlickList,SlickItem, BigButton,ProgressBar,SocialLogin,Dialog,Fieldset},
    directives: { handle: HandleDirective },
    
   setup() {
     const newTodo = ref("");
     const toolBar = ref(false);
-    
+    const displayModal= ref(false);
+    const displayName = ref(false);
     
     const todoList = JSON.parse(localStorage.getItem("todos")) || [];
     const todos = ref(todoList);
 
     const count = ref(0)
     const message = ref('Big things have small beginnings')
-
+    const user = ref("Login")
 
 
 
@@ -136,6 +156,22 @@ export default {
       }
       
       storeItem();
+    }
+    function populateHeader(e)
+    {
+      
+      if(e['loginType'] == 'fb')
+      {
+        user.value = e['fb']['user']['name']
+
+
+      }
+      else if(e['loginType'] == 'google')
+      {
+        user.value = e['google']['user']['name']
+
+      }
+      closeModal()
     }
     function crossOut(todo) {
       todo.done = !todo.done;
@@ -199,6 +235,19 @@ export default {
         toolBar.value = false;
 
       }
+      function openModal() {
+            displayModal.value = true;
+        }
+      function closeModal() {
+            displayModal.value = false;
+        }
+      function vName() {
+            displayName.value = true;
+        }
+      function ivName() {
+            displayName.value = false;
+        }
+
     return {
       todos,
       newTodo,
@@ -213,6 +262,14 @@ export default {
       showTool,
       hideTool,
       toolBar,
+      displayModal,
+      openModal,
+      closeModal,
+      populateHeader,
+      user,
+      displayName,
+      vName,
+      ivName
       
     
     };
@@ -372,4 +429,24 @@ body {
   transform: translateX(50px);
   opacity: 0;
 }
+.field-card
+{
+  width: max-content;
+  height: inherit;
+  
+  cursor: pointer;
+  
+
+}
+.log{
+  padding: 0;
+  margin: 0;
+ 
+  font-size: 16px;
+}
+.log:hover
+{
+  color:green;
+}
+
 </style>
