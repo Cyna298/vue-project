@@ -1,5 +1,5 @@
 export const initFbsdk = () => {
-  return new Promise(resolve => {
+/*  return new Promise(resolve => {
     window.fbAsyncInit = function() {
       FB.init({
         appId: '358802602268283',
@@ -14,5 +14,5 @@ export const initFbsdk = () => {
       js.src = '//connect.facebook.net/en_US/all.js'
       fjs.parentNode.insertBefore(js, fjs)
     }(document, 'script', 'facebook-jssdk'))
-  })
+  })*/
 }

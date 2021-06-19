@@ -30,7 +30,7 @@
     <s-twitter
         class="base-social"
         :windowFeatures='{"width":600,"height":540}'
-        :shareOptions="shareOptions"
+        :shareOptions="shareOptionsTwitter"
         :useNativeBehavior="false"
     >
         <svg
@@ -67,10 +67,17 @@
             height : 600
         },
         shareOptions: {
-          url: 'https://en.meming.world/images/en/6/67/Cowering_Detective_Pikachu.jpg',
-          quote: 'OH IT ACTUALLY WORKED HAHA',
-          hashtag: '#vue #vue-socials',
-          text: 'OH IT WORKS ON TWITTER TOO? HAHA',
+          url: 'https://vuejsdevelopers.com/images/posts/versions/switch_react_vue_1200.webp',
+          quote: 'To VUE or not to VUE! @_@',
+          hashtag: '#vue-socials',
+          
+        },
+
+        shareOptionsTwitter:
+        {
+          url: 'https://vuejs.org/',
+          hashtags: ['vue', 'vue_socials', 'LearnVue', 'VueVsReact'],
+          text: 'To VUE or not to VUE! @_@',
           via: "eishatheahmad"
         },
         useNativeBehavior: false,
