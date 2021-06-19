@@ -24,77 +24,7 @@ export default defineComponent({
   components: { GoogleMap, Marker },
 
   methods:{
-     getPosition()
-      {
-
-        if(navigator.geolocation){
-            console.log("hello i exist")
-
-            var options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-            };
-           
-
-            return new Promise((res, rej) => {
-             navigator.geolocation.getCurrentPosition(res, rej,options);
-
-             console.log(res)
-         });
-
-           
-
-            
-            
-        }
-        
-        if(navigator.geolocation==false)
-        {
-            
-            this.error = "Geolocation is not supported."; 
-            console.log(this.error)
-        }
-
-        
-       
-    },
-
-    async showPosition(){
-
-        //console.log(position.coords.latitude);
-		//console.log(position.coords.longitude);
-
-
-        var position = await this.getPosition();  // wait for getPosition to complete
-        console.log(position);
-
-
-       
-
-        let x= position.coords.latitude
-        let y = position.coords.longitude
-
-        console.log(x)
-        console.log(y)
-
-        this.center1.lat=x
-        this.center1.lng=y
-
-
-        let z= {lat:x, lng:y}
-
-        console.log(this.center1)
-
-        
-
-        return z;
-        
-
-    },
-
-
-
+     
     geolocate(){
 
         navigator.geolocation.getCurrentPosition(position => {
@@ -117,7 +47,6 @@ export default defineComponent({
            center: {
             lat : 30.3753,
             lng : 69.3451 } ,
-
             zoom: 7
         }
     },
